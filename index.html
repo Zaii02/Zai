@@ -104,14 +104,22 @@
 
 </div>
 
-<!-- Autoplay Background Music -->
-<audio id="bg-music" autoplay loop>
+<!-- Background Music -->
+<audio id="bg-music" loop>
   <source src="https://files.catbox.moe/v8lel8.mp3" type="audio/mpeg">
-  
+  Your browser does not support the audio element.
 </audio>
+
+<!-- Autoplay JS workaround -->
+<script>
+window.addEventListener('load', function() {
+  const audio = document.getElementById('bg-music');
+  audio.play().catch(() => {
+    console.log('Autoplay blocked, click anywhere to play');
+    document.body.addEventListener('click', () => audio.play(), { once: true });
+  });
+});
+</script>
 
 </body>
 </html>
-
-
-
