@@ -3,8 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Zai's Profile</title>
+
+<!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<script src="https://kit.fontawesome.com/a2e860f7d0.js" crossorigin="anonymous"></script>
+
 <style>
   body {
     margin: 0;
@@ -14,10 +20,12 @@
     text-align: center;
     padding: 40px;
   }
+
   .container {
     max-width: 600px;
-    margin: 0 auto;
+    margin: auto;
   }
+
   .pfp {
     width: 150px;
     height: 150px;
@@ -26,54 +34,54 @@
     border: 2px solid #333;
     margin-bottom: 20px;
   }
+
   .username {
     font-size: 28px;
     letter-spacing: 2px;
+    font-weight: 600;
   }
+
   .tag {
     color: #b3b3b3;
     font-size: 15px;
   }
+
   .status {
     margin-top: 10px;
     color: #ccc;
     font-size: 14px;
   }
+
   .icons a {
+    display: inline-block;
     margin: 10px;
     color: white;
-    font-size: 22px;
+    font-size: 20px;
     text-decoration: none;
+    transition: 0.2s;
   }
+
   .icons a:hover {
-    color: #999;
+    color: #888;
   }
-  .album-cover {
-    margin-top: 30px;
-    width: 100%;
-    max-width: 400px;
-    border-radius: 12px;
-    box-shadow: 0 0 20px #1db954;
-  }
+
   .discord-section {
     margin-top: 40px;
     background: #1c1c1c;
     padding: 20px;
     border-radius: 12px;
   }
-  iframe.youtube {
-    display: none;
-  }
 </style>
-<script src="https://kit.fontawesome.com/a2e860f7d0.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
 <div class="container">
 
   <!-- Profile Picture -->
-  <img src="https://cdn.discordapp.com/avatars/1279713906176163872/c55e3fe0878ef601e28fd751de195eee.png?size=1024" 
-       alt="Profile Picture" class="pfp">
+  <img 
+    src="https://cdn.discordapp.com/avatars/1279713906176163872/c55e3fe0878ef601e28fd751de195eee.png?size=1024" 
+    alt="Profile Picture"
+    class="pfp">
 
   <div class="username">ZAI</div>
   <div class="tag">@zaijan2</div>
@@ -81,10 +89,11 @@
 
   <!-- TikTok Link -->
   <div class="icons">
-    <a href="https://www.tiktok.com/@_zaiii02" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+    <a href="https://www.tiktok.com/@_zaiii02" target="_blank">
+      <i class="fab fa-tiktok"></i> TikTok
+    </a>
   </div>
 
- 
   <!-- Discord Section -->
   <div class="discord-section">
     <h3>Discord Info</h3>
@@ -93,15 +102,11 @@
     <p><a href="https://discord.com/users/1279713906176163872" target="_blank">View Discord Profile</a></p>
   </div>
 
-  <!-- Hidden YouTube Player for Autoplay -->
-  <iframe class="youtube"
-    src="https://www.youtube.com/embed/CgjknaWVChY?autoplay=1&loop=1&playlist=CgjknaWVChY"
-    frameborder="0"
-    allow="autoplay; encrypted-media"
-    allowfullscreen>
-  </iframe>
-
 </div>
+
+<!-- Same music element as your first HTML -->
+<audio id="bg-music" loop></audio>
 
 </body>
 </html>
+
