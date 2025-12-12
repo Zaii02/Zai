@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Zai's Profile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  body {
+    margin: 0;
+    background: #000;
+    font-family: 'Inter', sans-serif;
+    color: white;
+    text-align: center;
+    padding: 40px;
+  }
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .pfp {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #333;
+    margin-bottom: 20px;
+  }
+  .username {
+    font-size: 28px;
+    letter-spacing: 2px;
+  }
+  .tag {
+    color: #b3b3b3;
+    font-size: 15px;
+  }
+  .status {
+    margin-top: 10px;
+    color: #ccc;
+    font-size: 14px;
+  }
+  .icons a {
+    margin: 10px;
+    color: white;
+    font-size: 22px;
+    text-decoration: none;
+  }
+  .icons a:hover {
+    color: #999;
+  }
+  .album-cover {
+    margin-top: 30px;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px #1db954;
+  }
+  .discord-section {
+    margin-top: 40px;
+    background: #1c1c1c;
+    padding: 20px;
+    border-radius: 12px;
+  }
+  iframe.youtube {
+    display: none;
+  }
+</style>
+<script src="https://kit.fontawesome.com/a2e860f7d0.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Profile Picture -->
+  <img src="https://cdn.discordapp.com/avatars/1279713906176163872/c55e3fe0878ef601e28fd751de195eee.png?size=1024" 
+       alt="Profile Picture" class="pfp">
+
+  <div class="username">ZAI</div>
+  <div class="tag">@zaijan2</div>
+  <div class="status">● Do Not Disturb</div>
+
+  <!-- TikTok Link -->
+  <div class="icons">
+    <a href="https://www.tiktok.com/@_zaiii02" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+  </div>
+
+ 
+  <!-- Discord Section -->
+  <div class="discord-section">
+    <h3>Discord Info</h3>
+    <p><strong>ID:</strong> 1279713906176163872</p>
+    <p><strong>Tag:</strong> @zaijan2</p>
+    <p><a href="https://discord.com/users/1279713906176163872" target="_blank">View Discord Profile</a></p>
+  </div>
+
+  <!-- Hidden YouTube Player for Autoplay -->
+  <iframe class="youtube"
+    src="https://www.youtube.com/embed/CgjknaWVChY?autoplay=1&loop=1&playlist=CgjknaWVChY"
+    frameborder="0"
+    allow="autoplay; encrypted-media"
+    allowfullscreen>
+  </iframe>
+
+</div>
+
+</body>
+</html>
