@@ -16,55 +16,30 @@
     color: white;
     text-align: center;
     padding: 40px;
+    overflow: hidden;
+  }
+
+  canvas {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
   }
 
   .container {
+    display: none; /* hidden until intro removed */
     max-width: 600px;
     margin: auto;
+    position: relative;
+    z-index: 2;
   }
 
-  .pfp {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #333;
-    margin-bottom: 20px;
-  }
+  .pfp { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 2px solid #333; margin-bottom: 20px; }
+  .username { font-size: 28px; letter-spacing: 2px; font-weight: 600; }
+  .tag { color: #b3b3b3; font-size: 15px; }
+  .status { margin-top: 10px; color: #ccc; font-size: 14px; }
+  .icons a { display: inline-block; margin: 10px; color: white; font-size: 20px; text-decoration: none; }
+  .discord-section { margin-top: 40px; background: #1c1c1c; padding: 20px; border-radius: 12px; }
 
-  .username {
-    font-size: 28px;
-    letter-spacing: 2px;
-    font-weight: 600;
-  }
-
-  .tag {
-    color: #b3b3b3;
-    font-size: 15px;
-  }
-
-  .status {
-    margin-top: 10px;
-    color: #ccc;
-    font-size: 14px;
-  }
-
-  .icons a {
-    display: inline-block;
-    margin: 10px;
-    color: white;
-    font-size: 20px;
-    text-decoration: none;
-  }
-
-  .discord-section {
-    margin-top: 40px;
-    background: #1c1c1c;
-    padding: 20px;
-    border-radius: 12px;
-  }
-
-  /* Pill Music Button */
   .music-pill {
     position: fixed;
     top: 20px;
@@ -77,40 +52,29 @@
     align-items: center;
     gap: 10px;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background 0.2s, box-shadow 0.3s;
+    z-index: 3;
+    box-shadow: 0 0 5px #00fff7;
   }
+  .music-pill:hover { box-shadow: 0 0 15px #00fff7,0 0 25px #00fff7,0 0 35px #00fff7; }
+  .music-pill span { font-size: 14px; color: #ccc; }
+  .music-pill i { font-size: 14px; }
 
-  .music-pill:hover {
-    background: #1a1a1a;
-  }
-
-  .music-pill span {
-    font-size: 14px;
-    color: #ccc;
-  }
-
-  .music-pill i {
-    font-size: 14px;
-  }
-
-  /* Intro Screen */
   #intro {
     position: fixed;
     inset: 0;
-    background: #000;
+    background: rgba(0,0,0,0.85);
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 9999;
+    z-index: 2; /* in front of particles */
     cursor: pointer;
-    transition: opacity 0.4s ease;
     flex-direction: column;
     font-family: 'Poppins', sans-serif;
+    transition: opacity 0.4s ease;
   }
 
-  .intro-content h2,
-  .intro-content h1,
-  .intro-content p {
+  .intro-content h2, .intro-content h1 {
     opacity: 0;
     transform: translateY(20px);
     animation: fadeInUp 0.8s forwards;
@@ -138,63 +102,39 @@
     animation: fadeInUp 0.8s forwards, neonPulse 1.5s infinite alternate;
   }
 
-  .intro-content p {
-    font-size: 14px;
-    color: #777;
-    margin-top: 8px;
-    animation-delay: 0.5s;
-  }
-
-  @keyframes fadeInUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes neonPulse {
-    0%, 100% { text-shadow: 0 0 10px #00fff7, 0 0 20px #00fff7, 0 0 30px #00fff7; }
-    50% { text-shadow: 0 0 20px #00fff7, 0 0 30px #00fff7, 0 0 40px #00fff7; }
-  }
-
+  @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+  @keyframes neonPulse { 0%,100% { text-shadow: 0 0 10px #00fff7,0 0 20px #00fff7,0 0 30px #00fff7; } 50% { text-shadow: 0 0 20px #00fff7,0 0 30px #00fff7,0 0 40px #00fff7; } }
 </style>
 </head>
 <body>
+
+<!-- Particle background -->
+<canvas id="particles"></canvas>
 
 <!-- Intro Screen -->
 <div id="intro">
   <div class="intro-content">
     <h2>ZAI</h2>
     <h1>ENTER</h1>
-    <p>click to continue</p>
   </div>
 </div>
 
+<!-- Main Content -->
 <div class="container">
-
   <img src="https://cdn.discordapp.com/avatars/1279713906176163872/c55e3fe0878ef601e28fd751de195eee.png?size=1024" class="pfp">
-
   <div class="username">ZAI</div>
   <div class="tag">@zaijan2</div>
   <div class="status">● Do Not Disturb</div>
-
   <div class="icons">
-    <a href="https://www.tiktok.com/@_zaiii02" target="_blank">
-      <i class="fab fa-tiktok"></i> TikTok
-    </a>
+    <a href="https://www.tiktok.com/@_zaiii02" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
   </div>
-
   <div class="discord-section">
     <h3>Discord Info</h3>
     <p><strong>ID:</strong> 1279713906176163872</p>
     <p><strong>Tag:</strong> @zaijan2</p>
     <p><a href="https://discord.com/users/1279713906176163872" target="_blank">View Discord Profile</a></p>
   </div>
-
 </div>
-
-<!-- Click Hint -->
-<div id="musicHint" style="margin-top:20px;color:#666;font-size:13px;opacity:0.8;">click anywhere to enable music</div>
 
 <!-- Audio -->
 <audio id="bg-music" loop>
@@ -212,36 +152,62 @@
   const toggle = document.getElementById('musicToggle');
   const icon = document.getElementById('musicIcon');
   const intro = document.getElementById('intro');
+  const container = document.querySelector('.container');
 
-  // Play music on intro click
+  // Intro click
   intro.addEventListener('click', async () => {
     try {
       await audio.play();
       icon.className = 'fas fa-pause';
       intro.style.opacity = '0';
-      setTimeout(() => intro.remove(), 400);
-    } catch (err) {
-      console.log("Music play failed:", err);
-    }
+      setTimeout(() => {
+        intro.remove();
+        container.style.display = 'block';
+      }, 400);
+    } catch(err){ console.log(err); }
   });
 
-  // Toggle music with the pill
   toggle.addEventListener('click', async (e) => {
     e.stopPropagation();
-    try {
-      if (audio.paused) {
-        await audio.play();
-        icon.className = 'fas fa-pause';
-      } else {
-        audio.pause();
-        icon.className = 'fas fa-play';
-      }
-    } catch (err) {
-      console.log("Toggle music failed:", err);
-    }
+    if(audio.paused){ await audio.play(); icon.className='fas fa-pause'; }
+    else{ audio.pause(); icon.className='fas fa-play'; }
   });
+
+  // Particles
+  const canvas = document.getElementById('particles');
+  const ctx = canvas.getContext('2d');
+  let w = canvas.width = window.innerWidth;
+  let h = canvas.height = window.innerHeight;
+  window.addEventListener('resize', ()=>{ w=canvas.width=window.innerWidth; h=canvas.height=window.innerHeight; });
+
+  const particles = [];
+  for(let i=0;i<80;i++){
+    particles.push({
+      x: Math.random()*w,
+      y: Math.random()*h,
+      r: Math.random()*3+1,
+      dx: (Math.random()-0.5)*0.5,
+      dy: (Math.random()-0.5)*0.5,
+      color: `rgba(0,255,247,${Math.random()*0.7+0.3})`
+    });
+  }
+
+  function animate(){
+    ctx.clearRect(0,0,w,h);
+    for(let p of particles){
+      p.x+=p.dx; p.y+=p.dy;
+      if(p.x<0||p.x>w||p.y<0||p.y>h){ p.x=Math.random()*w; p.y=Math.random()*h; }
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=p.color;
+      ctx.fill();
+    }
+    requestAnimationFrame(animate);
+  }
+  animate();
 </script>
 
 </body>
 </html>
+
 
