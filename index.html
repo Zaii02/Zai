@@ -26,7 +26,7 @@
   }
 
   .container {
-    display: none; /* hidden until intro removed */
+    display: none;
     max-width: 600px;
     margin: auto;
     position: relative;
@@ -67,7 +67,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 2; /* in front of particles */
+    z-index: 2;
     cursor: pointer;
     flex-direction: column;
     font-family: 'Poppins', sans-serif;
@@ -103,15 +103,16 @@
   }
 
   @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
-  @keyframes neonPulse { 0%,100% { text-shadow: 0 0 10px #00fff7,0 0 20px #00fff7,0 0 30px #00fff7; } 50% { text-shadow: 0 0 20px #00fff7,0 0 30px #00fff7,0 0 40px #00fff7; } }
+  @keyframes neonPulse {
+    0%,100% { text-shadow: 0 0 10px #00fff7,0 0 20px #00fff7,0 0 30px #00fff7; }
+    50% { text-shadow: 0 0 20px #00fff7,0 0 30px #00fff7,0 0 40px #00fff7; }
+  }
 </style>
 </head>
 <body>
 
-<!-- Particle background -->
 <canvas id="particles"></canvas>
 
-<!-- Intro Screen -->
 <div id="intro">
   <div class="intro-content">
     <h2>ZAI</h2>
@@ -119,15 +120,21 @@
   </div>
 </div>
 
-<!-- Main Content -->
 <div class="container">
   <img src="https://cdn.discordapp.com/avatars/1279713906176163872/c55e3fe0878ef601e28fd751de195eee.png?size=1024" class="pfp">
   <div class="username">ZAI</div>
   <div class="tag">@zaijan2</div>
   <div class="status">● Do Not Disturb</div>
+
   <div class="icons">
-    <a href="https://www.tiktok.com/@_zaiii02" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+    <a href="https://www.tiktok.com/@_zaiii02" target="_blank">
+      <i class="fab fa-tiktok"></i> TikTok
+    </a>
+    <a href="https://www.instagram.com/zaijancamero/" target="_blank">
+      <i class="fab fa-instagram"></i> Instagram
+    </a>
   </div>
+
   <div class="discord-section">
     <h3>Discord Info</h3>
     <p><strong>ID:</strong> 1279713906176163872</p>
@@ -136,12 +143,10 @@
   </div>
 </div>
 
-<!-- Audio -->
 <audio id="bg-music" loop>
   <source src="https://files.catbox.moe/v8lel8.mp3" type="audio/mpeg">
 </audio>
 
-<!-- Music Pill -->
 <div class="music-pill" id="musicToggle">
   <span>Music</span>
   <i class="fas fa-play" id="musicIcon"></i>
@@ -154,7 +159,6 @@
   const intro = document.getElementById('intro');
   const container = document.querySelector('.container');
 
-  // Intro click
   intro.addEventListener('click', async () => {
     try {
       await audio.play();
@@ -173,12 +177,15 @@
     else{ audio.pause(); icon.className='fas fa-play'; }
   });
 
-  // Particles
   const canvas = document.getElementById('particles');
   const ctx = canvas.getContext('2d');
   let w = canvas.width = window.innerWidth;
   let h = canvas.height = window.innerHeight;
-  window.addEventListener('resize', ()=>{ w=canvas.width=window.innerWidth; h=canvas.height=window.innerHeight; });
+
+  window.addEventListener('resize', () => {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  });
 
   const particles = [];
   for(let i=0;i<80;i++){
@@ -195,8 +202,12 @@
   function animate(){
     ctx.clearRect(0,0,w,h);
     for(let p of particles){
-      p.x+=p.dx; p.y+=p.dy;
-      if(p.x<0||p.x>w||p.y<0||p.y>h){ p.x=Math.random()*w; p.y=Math.random()*h; }
+      p.x+=p.dx;
+      p.y+=p.dy;
+      if(p.x<0||p.x>w||p.y<0||p.y>h){
+        p.x=Math.random()*w;
+        p.y=Math.random()*h;
+      }
       ctx.beginPath();
       ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
       ctx.fillStyle=p.color;
@@ -209,5 +220,6 @@
 
 </body>
 </html>
+
 
 
