@@ -4,11 +4,8 @@
 <meta charset="UTF-8">
 <title>Zai's Profile</title>
 
-<!-- Google Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
-<!-- Font Awesome -->
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <script src="https://kit.fontawesome.com/a2e860f7d0.js" crossorigin="anonymous"></script>
 
 <style>
@@ -58,11 +55,6 @@
     color: white;
     font-size: 20px;
     text-decoration: none;
-    transition: 0.2s;
-  }
-
-  .icons a:hover {
-    color: #888;
   }
 
   .discord-section {
@@ -71,30 +63,127 @@
     padding: 20px;
     border-radius: 12px;
   }
+
+  /* Pill Music Button */
+  .music-pill {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #0f0f0f;
+    border: 1px solid #222;
+    border-radius: 999px;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .music-pill:hover {
+    background: #1a1a1a;
+  }
+
+  .music-pill span {
+    font-size: 14px;
+    color: #ccc;
+  }
+
+  .music-pill i {
+    font-size: 14px;
+  }
+
+  /* Intro Screen */
+  #intro {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    cursor: pointer;
+    transition: opacity 0.4s ease;
+    flex-direction: column;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .intro-content h2,
+  .intro-content h1,
+  .intro-content p {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s forwards;
+  }
+
+  .intro-content h2 {
+    font-size: 36px;
+    letter-spacing: 6px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    animation-delay: 0.1s;
+    color: #00fff7;
+    text-shadow: 0 0 10px #00fff7, 0 0 20px #00fff7, 0 0 30px #00fff7;
+    animation: fadeInUp 0.8s forwards, neonPulse 1.5s infinite alternate;
+  }
+
+  .intro-content h1 {
+    font-size: 48px;
+    letter-spacing: 8px;
+    margin: 0;
+    font-weight: 600;
+    animation-delay: 0.3s;
+    color: #00fff7;
+    text-shadow: 0 0 10px #00fff7, 0 0 20px #00fff7, 0 0 30px #00fff7;
+    animation: fadeInUp 0.8s forwards, neonPulse 1.5s infinite alternate;
+  }
+
+  .intro-content p {
+    font-size: 14px;
+    color: #777;
+    margin-top: 8px;
+    animation-delay: 0.5s;
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes neonPulse {
+    0%, 100% { text-shadow: 0 0 10px #00fff7, 0 0 20px #00fff7, 0 0 30px #00fff7; }
+    50% { text-shadow: 0 0 20px #00fff7, 0 0 30px #00fff7, 0 0 40px #00fff7; }
+  }
+
 </style>
 </head>
 <body>
 
+<!-- Intro Screen -->
+<div id="intro">
+  <div class="intro-content">
+    <h2>ZAI</h2>
+    <h1>ENTER</h1>
+    <p>click to continue</p>
+  </div>
+</div>
+
 <div class="container">
 
-  <!-- Profile Picture -->
-  <img 
-    src="https://cdn.discordapp.com/avatars/1279713906176163872/c55e3fe0878ef601e28fd751de195eee.png?size=1024" 
-    alt="Profile Picture"
-    class="pfp">
+  <img src="https://cdn.discordapp.com/avatars/1279713906176163872/c55e3fe0878ef601e28fd751de195eee.png?size=1024" class="pfp">
 
   <div class="username">ZAI</div>
   <div class="tag">@zaijan2</div>
   <div class="status">● Do Not Disturb</div>
 
-  <!-- TikTok Link -->
   <div class="icons">
     <a href="https://www.tiktok.com/@_zaiii02" target="_blank">
       <i class="fab fa-tiktok"></i> TikTok
     </a>
   </div>
 
-  <!-- Discord Section -->
   <div class="discord-section">
     <h3>Discord Info</h3>
     <p><strong>ID:</strong> 1279713906176163872</p>
@@ -104,22 +193,55 @@
 
 </div>
 
-<!-- Background Music -->
+<!-- Click Hint -->
+<div id="musicHint" style="margin-top:20px;color:#666;font-size:13px;opacity:0.8;">click anywhere to enable music</div>
+
+<!-- Audio -->
 <audio id="bg-music" loop>
   <source src="https://files.catbox.moe/v8lel8.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
 </audio>
 
-<!-- Autoplay JS workaround -->
+<!-- Music Pill -->
+<div class="music-pill" id="musicToggle">
+  <span>Music</span>
+  <i class="fas fa-play" id="musicIcon"></i>
+</div>
+
 <script>
-window.addEventListener('load', function() {
   const audio = document.getElementById('bg-music');
-  audio.play().catch(() => {
-    console.log('Autoplay blocked, click anywhere to play');
-    document.body.addEventListener('click', () => audio.play(), { once: true });
+  const toggle = document.getElementById('musicToggle');
+  const icon = document.getElementById('musicIcon');
+  const intro = document.getElementById('intro');
+
+  // Play music on intro click
+  intro.addEventListener('click', async () => {
+    try {
+      await audio.play();
+      icon.className = 'fas fa-pause';
+      intro.style.opacity = '0';
+      setTimeout(() => intro.remove(), 400);
+    } catch (err) {
+      console.log("Music play failed:", err);
+    }
   });
-});
+
+  // Toggle music with the pill
+  toggle.addEventListener('click', async (e) => {
+    e.stopPropagation();
+    try {
+      if (audio.paused) {
+        await audio.play();
+        icon.className = 'fas fa-pause';
+      } else {
+        audio.pause();
+        icon.className = 'fas fa-play';
+      }
+    } catch (err) {
+      console.log("Toggle music failed:", err);
+    }
+  });
 </script>
 
 </body>
 </html>
+
